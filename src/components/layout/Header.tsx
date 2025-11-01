@@ -22,7 +22,7 @@ export const Header = memo(function Header() {
       className="sticky top-0 z-50 w-full bg-white"
       role="banner"
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-6 md:px-16 lg:px-24">
         <div className="flex h-16 items-center justify-between">
 
           {/* LOGO */}
@@ -44,27 +44,27 @@ export const Header = memo(function Header() {
             
             {/* BUSCA (LUPA OU CAMPO) */}
             <div className="relative flex items-center">
-              <button 
-                className={`h-9 w-9 flex items-center justify-center rounded-full bg-[#F8F8F8] hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 cursor-pointer ${isSearchOpen ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}`}
+              <button
+                className={`h-8 w-8 flex items-center justify-center rounded-full bg-[#F8F8F8] hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 cursor-pointer ${isSearchOpen ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}`}
                 aria-label="Buscar produtos"
                 onClick={() => setIsSearchOpen(true)}
               >
                 <Search className="h-4 w-4 text-gray-700 transition-colors duration-200" />
               </button>
-              
+
               {isSearchOpen && (
                 <div className="absolute left-0 top-0 z-10 animate-in fade-in zoom-in-95 duration-200">
-                  <div className="relative h-10 w-64 flex items-center rounded-md border border-[#e4e4e4] border-[1px] bg-white shadow-[0_0_0_0px] transition-all duration-300 focus-within:border-primary">
-                    <Search className="absolute left-3 h-4 w-4 text-gray-400 pointer-events-none transition-colors duration-200" />
+                  <div className="relative h-8 w-48 flex items-center rounded-md border border-[#e4e4e4] border-[1px] bg-white shadow-[0_0_0_0px] transition-all duration-300 focus-within:border-primary">
+                    <Search className="absolute left-3 h-3.5 w-3.5 text-gray-400 pointer-events-none transition-colors duration-200" />
                     <input
                       type="text"
                       placeholder="Buscar..."
-                      className="h-full w-full pl-10 pr-10 text-sm bg-transparent border-none outline-none focus:outline-none focus:ring-0 transition-all duration-300"
+                      className="h-full w-full pl-9 pr-8 text-sm bg-transparent border-none outline-none focus:outline-none focus:ring-0 transition-all duration-300"
                       autoFocus
                       onBlur={() => setIsSearchOpen(false)}
                     />
                     <button
-                      className="absolute right-3 text-gray-400 hover:text-gray-600 transition-colors duration-200 cursor-pointer"
+                      className="absolute right-2 text-gray-400 hover:text-gray-600 transition-colors duration-200 cursor-pointer text-sm"
                       onMouseDown={(e) => e.preventDefault()}
                       onClick={() => setIsSearchOpen(false)}
                     >
