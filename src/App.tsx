@@ -2,6 +2,7 @@
 import { Header } from "@/components/layout/Header";
 import { Hero } from "./components/hero/Hero";
 import { ProductFamilies } from "./components/product-families/ProductFamilies";
+import { ProductGrid } from "./components/products/ProductGrid";
 
 export default function App() {
   return (
@@ -9,9 +10,7 @@ export default function App() {
       <Header />
       <Hero />
       <ProductFamilies />
-      <br/>
-      <br/>
-      <br/> 
+      <ProductGrid />
     </div>
   );
 }
