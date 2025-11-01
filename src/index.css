@@ -17,6 +17,11 @@
     text-rendering: optimizeLegibility;
   }
 
+  body {
+    max-width: 1366px;
+    margin: 0 auto;
+  }
+
   /* Reset suave para headings */
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold leading-tight;
@@ -26,6 +31,12 @@
   a {
     @apply no-underline;
   }
+
+  @layer utilities {
+  .bg-cover { background-size: cover; }
+  .bg-center { background-position: center; }
+  .bg-no-repeat { background-repeat: no-repeat; }
+}
 
   /* Acessibilidade: reduced motion */
   @media (prefers-reduced-motion: reduce) {

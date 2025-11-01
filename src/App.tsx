@@ -1,10 +1,13 @@
 // src/App.tsx
 import { Header } from "@/components/layout/Header";
+import { Hero } from "./components/hero/Hero";
 
 export default function App() {
   return (
     <div className="min-h-screen">
       <Header />
+      <Hero />
+      
      
       {/* resto da página aqui */}
       <main className="p-8 text-center">

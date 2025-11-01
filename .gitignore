@@ -16,6 +16,7 @@ tsconfig.tsbuildinfo
 *.js
 *.mjs
 *.cjs
+*.md
 
 # Logs
 *.log
