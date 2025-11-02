@@ -59,12 +59,12 @@ export const ProductGrid = memo(function ProductGrid() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
-    <section className="w-full bg-white py-2 md:py-3 lg:py-4">
-      <div className="container mx-auto px-1 md:px-2">
-        <div className="flex flex-col lg:flex-row gap-6">
+    <section className="w-full bg-white py-4 md:py-6 lg:py-8">
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
 
-          {/* SIDEBAR DE FILTROS */}
-          <aside className="w-full lg:w-80 shrink-0">
+          {/* SIDEBAR DE FILTROS - Oculto no mobile por padrão */}
+          <aside className="hidden lg:block lg:w-80 shrink-0">
             <div className="border border-gray-200 rounded-lg overflow-hidden">
               {/* Filtros */}
               <div className="p-3 bg-[#FFFFFF] border-b border-[#D5D7D8]">
@@ -100,11 +100,11 @@ export const ProductGrid = memo(function ProductGrid() {
           <div className="flex-1">
 
             {/* Header */}
-            <div className="flex items-center justify-between mb-1" style={{ paddingRight: '4px' }}>
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0 mb-3 md:mb-1" style={{ paddingRight: '4px' }}>
               <div className="flex items-center gap-2">
                 <div className="px-3 py-1.5 bg-[#F8F8F8] rounded-full">
                   <p
-                    className="text-[14px] leading-4 font-bold text-[#121212]"
+                    className="text-xs md:text-[14px] leading-4 font-bold text-[#121212]"
                     style={{ fontFamily: "Raleway" }}
                   >
                     86 produtos
@@ -148,18 +148,18 @@ export const ProductGrid = memo(function ProductGrid() {
               </Button>
             </div>
 
-            {/* Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-4">
+            {/* Grid - Responsivo */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mt-4">
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="cursor-pointer group"
+                  className="cursor-pointer group flex md:flex-col gap-3 md:gap-0"
                   style={{ margin: 0, padding: 0 }}
                 >
                   {/* Box da imagem */}
-                  <div className="relative" style={{ margin: 0, padding: 0 }}>
+                  <div className="relative shrink-0 w-28 h-28 md:w-full md:h-auto" style={{ margin: 0, padding: 0 }}>
                     {product.isNew && (
-                      <Badge className="absolute top-2 left-2 bg-[#A75897] text-white px-4 py-1.5 text-base z-10">
+                      <Badge className="absolute top-1 left-1 md:top-2 md:left-2 bg-[#A75897] text-white px-2 py-0.5 md:px-4 md:py-1.5 text-xs md:text-base z-10">
                         Lançamento
                       </Badge>
                     )}
@@ -170,8 +170,6 @@ export const ProductGrid = memo(function ProductGrid() {
                       alt={product.name}
                       className="w-full h-full border border-gray-200 object-contain rounded-md"
                       style={{
-                        height: '320px',
-                        width: '100%',
                         margin: 0,
                         padding: 0,
                         display: 'block'
@@ -179,18 +177,18 @@ export const ProductGrid = memo(function ProductGrid() {
                     />
                   </div>
 
-                  {/* Texto abaixo da imagem */}
+                  {/* Texto abaixo/ao lado da imagem */}
                   <div
-                    className="mb-0"
+                    className="flex-1 md:mb-0"
                     style={{
-                      marginTop: '12px',
+                      marginTop: '0',
                       marginBottom: 0,
                       padding: '2px 2px',
                       background: 'white'
                     }}
                   >
                     <h3
-                      className="text-[16px] font-medium text-[#121212] mb-0.5 wrap-break-word"
+                      className="text-sm md:text-[16px] font-medium text-[#121212] mb-0.5 wrap-break-word"
                       style={{
                         fontFamily: 'Raleway',
                         fontWeight: 500,
@@ -202,7 +200,7 @@ export const ProductGrid = memo(function ProductGrid() {
                       {product.name}
                     </h3>
                     <p
-                      className="text-[14px] text-gray-500 wrap-break-word"
+                      className="text-xs md:text-[14px] text-gray-500 wrap-break-word"
                       style={{
                         lineHeight: '16px',
                         margin: 0,
@@ -233,48 +231,48 @@ export const ProductGrid = memo(function ProductGrid() {
             </div>
 
             {/* Paginação */}
-            <div className="flex items-center justify-center gap-2 mt-8 mb-4"
+            <div className="flex items-center justify-center gap-1 md:gap-2 mt-6 md:mt-8 mb-4"
               style={{
                 fontFamily: 'Roboto',
                 fontWeight: 400,
-                fontSize: '16px',
+                fontSize: '14px',
                 lineHeight: '18px'
               }}
             >
               <button
-                className="w-8 h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer"
+                className="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer text-sm md:text-base"
                 aria-label="Página anterior"
               >
                 &lt;
               </button>
 
               <button
-                className="w-7 h-7 flex items-center justify-center rounded-full border border-[#707372] text-[#121212] cursor-pointer"
+                className="w-6 h-6 md:w-7 md:h-7 flex items-center justify-center rounded-full border border-[#707372] text-[#121212] cursor-pointer text-sm md:text-base"
                 style={{ boxShadow: '0px 0px 4px 0px #707372' }}
               >
                 1
               </button>
-              <button className="w-8 h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer">
+              <button className="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer text-sm md:text-base">
                 2
               </button>
-              <button className="w-8 h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer">
+              <button className="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer text-sm md:text-base">
                 3
               </button>
-              <button className="w-8 h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer">
+              <button className="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer text-sm md:text-base">
                 4
               </button>
-              <button className="w-8 h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer">
+              <button className="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer text-sm md:text-base">
                 5
               </button>
 
-              <span className="text-[#707372]">...</span>
+              <span className="text-[#707372] text-sm md:text-base">...</span>
 
-              <button className="w-8 h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer">
+              <button className="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer text-sm md:text-base">
                 10
               </button>
 
               <button
-                className="w-8 h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer"
+                className="w-7 h-7 md:w-8 md:h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer text-sm md:text-base"
                 aria-label="Próxima página"
               >
                 &gt;

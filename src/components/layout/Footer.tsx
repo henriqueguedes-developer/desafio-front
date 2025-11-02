@@ -10,17 +10,17 @@ export const Footer = memo(function Footer() {
   return (
     <footer className="w-full bg-[#4C4D4C]">
       {/* Conteúdo principal do footer */}
-      <div className="container mx-auto px-6 md:px-16 lg:px-24 py-12 border-b border-[#707372]">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+      <div className="container mx-auto px-4 md:px-16 lg:px-24 py-8 md:py-12 border-b border-[#707372]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8 text-center md:text-left">
 
           {/* Logo */}
-          <div>
-            <img src={LogoUrl} alt="Logo Orthopedic" className="h-10 w-auto brightness-0 invert" />
+          <div className="flex justify-center md:justify-start">
+            <img src={LogoUrl} alt="Logo Orthopedic" className="h-8 md:h-10 w-auto brightness-0 invert" />
           </div>
 
           {/* Institucional */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Institucional</h3>
+            <h3 className="text-white font-semibold mb-3 md:mb-4 text-sm md:text-base">Institucional</h3>
             <ul className="space-y-2">
               <li>
                 <a href="#" className="text-[#EBEBEB] hover:text-white transition-colors text-sm">
@@ -37,7 +37,7 @@ export const Footer = memo(function Footer() {
 
           {/* Download de Catálogos */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Download de Catálogos</h3>
+            <h3 className="text-white font-semibold mb-3 md:mb-4 text-sm md:text-base">Download de Catálogos</h3>
             <ul className="space-y-2">
               <li>
                 <a href="#" className="text-[#EBEBEB] hover:text-white transition-colors text-sm">
@@ -74,7 +74,7 @@ export const Footer = memo(function Footer() {
 
           {/* Linhas de produtos */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Linhas de produtos</h3>
+            <h3 className="text-white font-semibold mb-3 md:mb-4 text-sm md:text-base">Linhas de produtos</h3>
             <ul className="space-y-2">
               <li>
                 <a href="#" className="text-[#EBEBEB] hover:text-white transition-colors text-sm">
@@ -96,15 +96,56 @@ export const Footer = memo(function Footer() {
 
           {/* Entre em contato */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Entre em contato e tire suas dúvidas</h3>
-            <div className="space-y-3 mb-6">
+            <h3 className="text-white font-semibold mb-3 md:mb-4 text-sm md:text-base">Entre em contato e tire suas dúvidas</h3>
+
+            {/* Mobile: Cards com fundo */}
+            <div className="space-y-3 mb-6 md:hidden">
+              {/* Telefone */}
+              <div className="bg-[#5A5A5A] rounded-lg p-4 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full border border-[#E57200] flex items-center justify-center shrink-0">
+                  <Phone className="h-4 w-4 text-[#E57200]" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-[#EBEBEB] text-xs mb-1">Telefone</p>
+                  <p className="text-white text-sm font-medium">+55 48 3333 3333</p>
+                </div>
+                <span className="text-[#EBEBEB]">›</span>
+              </div>
+
+              {/* E-mail SAC */}
+              <div className="bg-[#5A5A5A] rounded-lg p-4 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full border border-[#E57200] flex items-center justify-center shrink-0">
+                  <Mail className="h-4 w-4 text-[#E57200]" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-[#EBEBEB] text-xs mb-1">E-mail SAC</p>
+                  <p className="text-white text-sm font-medium">sac@loremipsum.com.br</p>
+                </div>
+                <span className="text-[#EBEBEB]">›</span>
+              </div>
+
+              {/* E-mail RP */}
+              <div className="bg-[#5A5A5A] rounded-lg p-4 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full border border-[#E57200] flex items-center justify-center shrink-0">
+                  <Mail className="h-4 w-4 text-[#E57200]" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-[#EBEBEB] text-xs mb-1">E-mail RP</p>
+                  <p className="text-white text-sm font-medium">rp@loremipsum.com.br</p>
+                </div>
+                <span className="text-[#EBEBEB]">›</span>
+              </div>
+            </div>
+
+            {/* Desktop: Layout original */}
+            <div className="hidden md:block space-y-3 mb-6">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-full border border-[#E57200] flex items-center justify-center shrink-0">
                   <Phone className="h-3.5 w-3.5 text-[#E57200]" />
                 </div>
                 <span className="text-[#EBEBEB] text-sm">+55 48 3333 3333</span>
               </div>
-              <div className="flex items-start gap-2">
+              <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-full border border-[#E57200] flex items-center justify-center shrink-0">
                   <Mail className="h-3.5 w-3.5 text-[#E57200]" />
                 </div>
@@ -118,7 +159,7 @@ export const Footer = memo(function Footer() {
               <p className="text-white font-semibold mb-3 text-sm">
                 Nos acompanhe também<br />nas redes sociais
               </p>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center justify-center md:justify-start gap-3">
                 <a
                   href="#"
                   className="w-8 h-8 rounded-full border border-[#E57200] flex items-center justify-center hover:border-[#CC6600] transition-colors"
@@ -147,24 +188,24 @@ export const Footer = memo(function Footer() {
       </div>
 
       {/* Barra inferior */}
-      <div className="bg-[#4C4D4C] py-4">
-        <div className="container mx-auto px-6 md:px-16 lg:px-24">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="bg-[#4C4D4C] py-3 md:py-4">
+        <div className="container mx-auto px-4 md:px-16 lg:px-24">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
 
             {/* Seletor de país */}
             <div className="relative">
               <button
-                className="flex items-center gap-2 text-[#EBEBEB] hover:text-white transition-colors text-sm"
+                className="flex items-center gap-2 text-[#EBEBEB] hover:text-white transition-colors text-xs md:text-sm"
                 onClick={() => setIsCountryOpen(!isCountryOpen)}
               >
                 Selecionar País
-                <img src={FlagBRUrl} alt="Brasil" className="h-5 w-7" />
-                <ChevronDown className={`h-4 w-4 transition-transform ${isCountryOpen ? 'rotate-180' : ''}`} />
+                <img src={FlagBRUrl} alt="Brasil" className="h-5 w-7 md:h-5 md:w-7" />
+                <ChevronDown className={`h-3 w-3 md:h-4 md:w-4 transition-transform ${isCountryOpen ? 'rotate-180' : ''}`} />
               </button>
             </div>
 
             {/* Copyright */}
-            <div className="text-[#EBEBEB] text-xs text-center md:text-right">
+            <div className="text-[#EBEBEB] text-[10px] md:text-xs text-center md:text-right">
               © 2023 Lorem Ipsum. Todos os direitos reservados.
               <br />
               Av dos Bud, 150 - Florianópolis - SC - Brasil

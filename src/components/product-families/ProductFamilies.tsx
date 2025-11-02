@@ -14,34 +14,35 @@ const families = [
 
 export const ProductFamilies = memo(function ProductFamilies() {
   return (
-    <section className="w-full bg-white py-12 md:py-16 lg:py-20">
+    <section className="w-full bg-white py-8 md:py-12 lg:py-16">
       <div className="container mx-auto px-4 md:px-8">
 
         {/* TÍTULO */}
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-[#4C4C4C] mb-8 md:mb-10">
-          Conheça as{" "}
-          <span className="text-[#80276C]">famílias exclusivas</span>
+        <h2 className="text-lg md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-[#4C4C4C] mb-6 md:mb-8 lg:mb-10">
+          Conheça as <span className="text-[#80276C] whitespace-nowrap">famílias exclusivas</span>
           <br />
           da linha Orthopedic
         </h2>
 
-        {/* BADGES DAS FAMÍLIAS */}
-        <div className="flex flex-wrap gap-3 mb-8">
-          {families.map((family) => (
-            <Badge
-              key={family.name}
-              variant={family.active ? "default" : "secondary"}
-              className={`
-                px-4 py-2 text-sm font-medium rounded-full cursor-pointer transition-all
-                ${family.active
-                  ? "bg-[#A75897] text-white hover:bg-[#A75897]/90"
-                  : "bg-[#F8F8F8] text-[#A75897] hover:bg-[#A75897] hover:text-white"
-                }
-              `}
-            >
-              {family.name} ®
-            </Badge>
-          ))}
+        {/* BADGES DAS FAMÍLIAS - Scroll horizontal no mobile */}
+        <div className="overflow-x-auto pb-2 mb-6 md:mb-8 -mx-4 px-4 md:mx-0 md:px-0">
+          <div className="flex md:flex-wrap gap-3 min-w-max md:min-w-0">
+            {families.map((family) => (
+              <Badge
+                key={family.name}
+                variant={family.active ? "default" : "secondary"}
+                className={`
+                  px-4 py-2 text-sm font-medium rounded-full cursor-pointer transition-all whitespace-nowrap
+                  ${family.active
+                    ? "bg-[#A75897] text-white hover:bg-[#A75897]/90"
+                    : "bg-[#F8F8F8] text-[#A75897] hover:bg-[#A75897] hover:text-white"
+                  }
+                `}
+              >
+                {family.name} ®
+              </Badge>
+            ))}
+          </div>
         </div>
 
      

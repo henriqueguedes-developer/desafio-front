@@ -16,13 +16,14 @@ const navItems = [
 export const Header = memo(function Header() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <header
       className="sticky top-0 z-50 w-full bg-white"
       role="banner"
     >
-      <div className="container mx-auto px-6 md:px-16 lg:px-24">
+      <div className="container mx-auto px-4 md:px-16 lg:px-24">
         <div className="flex h-16 items-center justify-between">
 
           {/* LOGO */}
@@ -111,40 +112,50 @@ export const Header = memo(function Header() {
             </div>
           </div>
 
-          {/* MENU MOBILE */}
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden" aria-label="Abrir menu">
-                <Menu className="h-5 w-5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-64">
-              <nav className="flex flex-col gap-4 mt-8">
-                {navItems.map((item) => (
-                  <a key={item.label} href={item.href} className="text-lg font-medium hover:text-primary">
-                    {item.label}
-                  </a>
-                ))}
-                <div className="mt-6 pt-6 border-t space-y-3">
-                  <div className="relative h-10 flex items-center rounded-md border border-[#e4e4e4] bg-white shadow-[0_0_0_0px] transition-all duration-300 focus-within:border-primary">
-                    <Search className="absolute left-3 h-4 w-4 text-gray-500 pointer-events-none transition-colors duration-200" />
-                    <input
-                      type="text"
-                      placeholder="Buscar..."
-                      className="w-full h-full pl-10 pr-3 text-sm bg-transparent border-none outline-none focus:outline-none focus:ring-0 rounded-md transition-all duration-300"
-                      aria-label="Buscar no menu mobile"
-                    />
-                  </div>
-                  <Button className="w-full bg-[#E57200] hover:bg-[#CC6600] justify-center text-white">
-                    Fale conosco
-                    <img src={FlagBRUrl} alt="Brasil" className="ml-2 h-3 w-4" />
-                  </Button>
-                </div>
-              </nav>
-            </SheetContent>
-          </Sheet>
+          {/* MENU MOBILE - Botão Hambúrguer */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            aria-label="Abrir menu"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <Menu className="h-6 w-6" />
+          </Button>
 
         </div>
+
+        {/* MENU MOBILE DROPDOWN */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden absolute left-0 right-0 top-full bg-white">
+            <nav className="flex flex-col p-4">
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="text-base font-medium text-[#4C4C4C] hover:text-primary py-3 border-b border-gray-100 last:border-0 transition-colors"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <div className="mt-4 pt-4 space-y-3">
+                <div className="relative h-10 flex items-center rounded-md border border-[#e4e4e4] bg-white">
+                  <Search className="absolute left-3 h-4 w-4 text-gray-400 pointer-events-none" />
+                  <input
+                    type="text"
+                    placeholder="Buscar..."
+                    className="w-full h-full pl-10 pr-3 text-sm bg-transparent border-none outline-none focus:outline-none focus:ring-0 rounded-md"
+                    aria-label="Buscar no menu mobile"
+                  />
+                </div>
+                <Button className="w-full bg-[#E57200] hover:bg-[#CC6600] text-white">
+                  Fale conosco
+                </Button>
+              </div>
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   );
