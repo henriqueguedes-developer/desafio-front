@@ -54,7 +54,7 @@ export const Header = memo(function Header() {
 
               {isSearchOpen && (
                 <div className="absolute left-0 top-0 z-10 animate-in fade-in zoom-in-95 duration-200">
-                  <div className="relative h-8 w-48 flex items-center rounded-md border border-[#e4e4e4] border-[1px] bg-white shadow-[0_0_0_0px] transition-all duration-300 focus-within:border-primary">
+                  <div className="relative h-8 w-48 flex items-center rounded-md border border-[#e4e4e4] bg-white shadow-[0_0_0_0px] transition-all duration-300 focus-within:border-primary">
                     <Search className="absolute left-3 h-3.5 w-3.5 text-gray-400 pointer-events-none transition-colors duration-200" />
                     <input
                       type="text"
@@ -126,7 +126,7 @@ export const Header = memo(function Header() {
                   </a>
                 ))}
                 <div className="mt-6 pt-6 border-t space-y-3">
-                  <div className="relative h-10 flex items-center rounded-md border border-[#e4e4e4] border-[1px] bg-white shadow-[0_0_0_0px] transition-all duration-300 focus-within:border-primary">
+                  <div className="relative h-10 flex items-center rounded-md border border-[#e4e4e4] bg-white shadow-[0_0_0_0px] transition-all duration-300 focus-within:border-primary">
                     <Search className="absolute left-3 h-4 w-4 text-gray-500 pointer-events-none transition-colors duration-200" />
                     <input
                       type="text"

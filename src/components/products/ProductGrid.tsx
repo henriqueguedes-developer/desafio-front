@@ -104,7 +104,7 @@ export const ProductGrid = memo(function ProductGrid() {
               <div className="flex items-center gap-2">
                 <div className="px-3 py-1.5 bg-[#F8F8F8] rounded-full">
                   <p
-                    className="text-[14px] leading-[16px] font-bold text-[#121212]"
+                    className="text-[14px] leading-4 font-bold text-[#121212]"
                     style={{ fontFamily: "Raleway" }}
                   >
                     86 produtos
