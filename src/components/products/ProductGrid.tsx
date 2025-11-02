@@ -1,14 +1,12 @@
 // src/components/products/ProductGrid.tsx
 import { memo, useState } from "react";
-import { ChevronDown, Download } from "lucide-react";
+import { ChevronDown, Download, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 // Importar as imagens
 import product1 from "@/assets/products/imagem1.png";
 import product2 from "@/assets/products/imagem2.png";
-import product3 from "@/assets/products/imagem3.png";
-import product4 from "@/assets/products/imagem4.png";
 
 const products = [
   {
@@ -29,14 +27,14 @@ const products = [
     id: 3,
     name: "Órtese Soft Curta com Polegar",
     code: "OR1065",
-    image: product3,
+    image: product1,
     isNew: false,
   },
   {
     id: 4,
     name: "Órtese Soft Curta com Polegar",
     code: "OR1065",
-    image: product4,
+    image: product2,
     isNew: true,
   },
 ];
@@ -44,29 +42,30 @@ const products = [
 export const ProductGrid = memo(function ProductGrid() {
   const [familiesOpen, setFamiliesOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
-    <section className="w-full bg-white py-12 md:py-16 lg:py-20">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="flex flex-col lg:flex-row gap-8">
+    <section className="w-full bg-white py-2 md:py-3 lg:py-4">
+      <div className="container mx-auto px-1 md:px-2">
+        <div className="flex flex-col lg:flex-row gap-6">
 
           {/* SIDEBAR DE FILTROS */}
-          <aside className="w-full lg:w-64 flex-shrink-0">
+          <aside className="w-full lg:w-80 shrink-0">
             <div className="border border-gray-200 rounded-lg overflow-hidden">
               {/* Filtros */}
-              <div className="p-4 bg-[#FFFFFF] border-b border-[#D5D7D8]">
+              <div className="p-3 bg-[#FFFFFF] border-b border-[#D5D7D8]">
                 <h3 className="text-sm font-medium text-[#121212]">Filtros</h3>
               </div>
 
               {/* Lançamentos */}
-              <div className="p-4 bg-[#F8F8F8] border-b border-[#D5D7D8]">
+              <div className="p-3 bg-[#F8F8F8] border-b border-[#D5D7D8]">
                 <h3 className="text-sm font-medium text-[#121212]">Lançamentos</h3>
               </div>
 
               {/* Famílias/Tecnologias */}
               <button
                 onClick={() => setFamiliesOpen(!familiesOpen)}
-                className="w-full p-4 bg-[#F8F8F8] border-b border-[#D5D7D8] flex items-center justify-between text-sm font-medium text-[#121212] hover:bg-gray-200"
+                className="w-full p-3 bg-[#F8F8F8] border-b border-[#D5D7D8] flex items-center justify-between text-sm font-medium text-[#121212] hover:bg-gray-200"
               >
                 Famílias/Tecnologias
                 <ChevronDown className={`h-4 w-4 transition-transform ${familiesOpen ? 'rotate-180' : ''}`} />
@@ -75,7 +74,7 @@ export const ProductGrid = memo(function ProductGrid() {
               {/* Produtos */}
               <button
                 onClick={() => setProductsOpen(!productsOpen)}
-                className="w-full p-4 bg-[#F8F8F8] flex items-center justify-between text-sm font-medium text-[#121212] hover:bg-gray-200"
+                className="w-full p-3 bg-[#F8F8F8] flex items-center justify-between text-sm font-medium text-[#121212] hover:bg-gray-200"
               >
                 Produtos
                 <ChevronDown className={`h-4 w-4 transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
@@ -87,42 +86,132 @@ export const ProductGrid = memo(function ProductGrid() {
           <div className="flex-1">
 
             {/* Header */}
-            <div className="flex items-center justify-between mb-8">
-              <p className="text-lg font-medium text-gray-700">{products.length} produtos</p>
-              <Button className="bg-[#E57200] hover:bg-[#CC6600] text-white">
-                <Download className="h-4 w-4 mr-2" />
+            <div className="flex items-center justify-between mb-1" style={{ paddingRight: '4px' }}>
+              <div className="flex items-center gap-2">
+                <div className="px-3 py-1.5 bg-[#F8F8F8] rounded-full">
+                  <p
+                    className="text-[14px] leading-[16px] font-bold text-[#121212]"
+                    style={{ fontFamily: "Raleway" }}
+                  >
+                    86 produtos
+                  </p>
+                </div>
+                <div className="relative flex items-center">
+                  <button
+                    className={`p-1.5 bg-[#F8F8F8] hover:bg-gray-300 rounded-full transition-all duration-300 ${isSearchOpen ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}`}
+                    onClick={() => setIsSearchOpen(true)}
+                    aria-label="Buscar produtos"
+                  >
+                    <Search className="h-4 w-4 text-gray-600" />
+                  </button>
+
+                  {isSearchOpen && (
+                    <div className="absolute left-0 top-0 z-10 animate-in fade-in zoom-in-95 duration-200">
+                      <div className="relative h-7 w-44 flex items-center rounded-md border border-[#e4e4e4] bg-white  transition-all duration-300 focus-within:border-primary">
+                        <Search className="absolute left-3 h-3.5 w-3.5 text-gray-400 pointer-events-none transition-colors duration-200" />
+                        <input
+                          type="text"
+                          placeholder="Buscar..."
+                          className="h-full w-full pl-9 pr-8 text-sm bg-transparent border-none outline-none focus:outline-none focus:ring-0 transition-all duration-300"
+                          autoFocus
+                          onBlur={() => setIsSearchOpen(false)}
+                        />
+                        <button
+                          className="absolute right-2 text-gray-400 hover:text-gray-600 transition-colors duration-200 cursor-pointer text-sm"
+                          onMouseDown={(e) => e.preventDefault()}
+                          onClick={() => setIsSearchOpen(false)}
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <Button className="bg-[#E57200] hover:bg-[#CC6600] text-white h-9">
+                <Download className="h-4 w-4 " />
                 Baixar Catálogo
               </Button>
             </div>
 
             {/* Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-4">
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="border border-gray-200 rounded-lg p-4 hover:shadow-lg transition-shadow cursor-pointer group"
+                  className="cursor-pointer group"
+                  style={{ margin: 0, padding: 0 }}
                 >
-                  {/* Badge de Lançamento */}
-                  <div className="relative mb-4">
+                  {/* Box da imagem */}
+                  <div className="relative" style={{ margin: 0, padding: 0 }}>
                     {product.isNew && (
-                      <Badge className="absolute top-2 left-2 bg-[#A75897] text-white px-3 py-1 text-xs">
+                      <Badge className="absolute top-1 left-1 bg-[#A75897] text-white px-2 py-0.5 text-xs z-10">
                         Lançamento
                       </Badge>
                     )}
+                    
+                    {/* Imagem */}
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-64 object-contain"
+                      className="w-full h-full border border-gray-200 object-contain rounded-md"
+                      style={{
+                        height: '320px',
+                        width: '100%',
+                        margin: 0,
+                        padding: 0,
+                        display: 'block'
+                      }}
                     />
                   </div>
-
-                  {/* Info do Produto */}
-                  <div>
-                    <h3 className="text-sm font-medium text-gray-800 mb-2">
+                  
+                  {/* Texto abaixo da imagem */}
+                  <div
+                    className="mb-0"
+                    style={{
+                      marginTop: '12px',
+                      marginBottom: 0,
+                      padding: '2px 2px',
+                      background: 'white'
+                    }}
+                  >
+                    <h3
+                      className="text-[16px] font-medium text-[#121212] mb-0.5 wrap-break-word"
+                      style={{
+                        fontFamily: 'Raleway',
+                        fontWeight: 500,
+                        lineHeight: '20px',
+                        margin: 0,
+                        padding: 0
+                      }}
+                    >
                       {product.name}
                     </h3>
-                    <p className="text-xs text-gray-500">
-                      Cód. Produto: {product.code}
+                    <p
+                      className="text-[14px] text-gray-500 wrap-break-word"
+                      style={{
+                        lineHeight: '16px',
+                        margin: 0,
+                        padding: 0
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: 'Raleway',
+                          fontWeight: 700,
+                          color: '#4C4D4C'
+                        }}
+                      >
+                        Cód. Produto:{" "}
+                      </span>
+                      <span
+                        style={{
+                          fontFamily: 'Roboto',
+                          fontWeight: 400
+                        }}
+                      >
+                        {product.code}
+                      </span>
                     </p>
                   </div>
                 </div>
