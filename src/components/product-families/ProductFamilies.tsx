@@ -1,8 +1,9 @@
 // src/components/product-families/ProductFamilies.tsx
 import { memo } from "react";
 import { Badge } from "@/components/ui/badge";
+import type { ProductFamily } from "@/types";
 
-const families = [
+const families: ProductFamily[] = [
   { name: "Hidrolight Neo", active: true },
   { name: "Comfort Air", active: false },
   { name: "Ortho Recovery", active: false },
@@ -10,7 +11,7 @@ const families = [
   { name: "Softline", active: false },
   { name: "Foot Care", active: false },
   { name: "Lean", active: false },
-] as const;
+];
 
 export const ProductFamilies = memo(function ProductFamilies() {
   return (

@@ -2,8 +2,14 @@
 import { memo } from "react";
 import HeroImage from "@/assets/hero-orthopedic.jpg?url";
 import LogoOrthopedic from "@/assets/logo-orthopedic.svg?url";
+import { Breadcrumb } from "@/components/common/Breadcrumb";
 
 export const Hero = memo(function Hero() {
+  const breadcrumbItems = [
+    { label: "Início", href: "/" },
+    { label: "Linha Orthopedic" },
+  ];
+
   return (
     <section
       className="relative w-full py-8 md:pt-[83px] md:pb-16 lg:pb-24"
@@ -11,7 +17,7 @@ export const Hero = memo(function Hero() {
       role="region"
       aria-label="Linha Orthopedic"
     >
-     
+
       <img
         src={HeroImage}
         alt=""
@@ -20,18 +26,12 @@ export const Hero = memo(function Hero() {
         aria-hidden="true"
       />
 
-     
+
       <div className="absolute inset-0" />
 
 
       <div className="absolute top-0 left-0 z-20 px-4 md:px-8 pt-4 md:pt-8">
-        <nav className="flex items-center gap-2 text-xs md:text-sm font-medium text-accent">
-          <a href="/" className="hover:underline transition-all">
-            Início
-          </a>
-          <span aria-hidden="true" className="text-gray-500">/</span>
-          <span className="font-semibold">Linha Orthopedic</span>
-        </nav>
+        <Breadcrumb items={breadcrumbItems} />
       </div>
 
 

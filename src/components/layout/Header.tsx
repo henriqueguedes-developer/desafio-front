@@ -1,6 +1,5 @@
 // src/components/layout/Header.tsx
 import { memo, useState } from "react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Search, Menu, ChevronDown } from "lucide-react";
 import LogoUrl from "@/assets/logo.svg?url";

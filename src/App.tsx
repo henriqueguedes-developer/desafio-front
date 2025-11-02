@@ -1,18 +1,15 @@
 // src/App.tsx
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { Hero } from "./components/hero/Hero";
-import { ProductFamilies } from "./components/product-families/ProductFamilies";
-import { ProductGrid } from "./components/products/ProductGrid";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HomePage } from "@/pages/HomePage";
+import { ProductDetailPage } from "@/pages/ProductDetailPage";
 
 export default function App() {
   return (
-    <div className="min-h-screen">
-      <Header />
-      <Hero />
-      <ProductFamilies />
-      <ProductGrid />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/produto/:id" element={<ProductDetailPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
