@@ -89,13 +89,13 @@ export const Header = memo(function Header() {
             {/* SELETOR DE IDIOMA */}
             <div className="relative">
               <button
-                className="h-10 px-3 flex items-center gap-2 rounded-md border border-[#e4e4e4] hover:border-[#e4e4e4] focus:border-[#e4e4e4] focus:outline-none focus:ring-0 hover:bg-gray-50 transition-colors"
+                className="h-10 px-3 flex items-center gap-2 rounded-md focus:outline-none focus:ring-0 hover:bg-gray-50 transition-colors"
                 onClick={() => setIsLanguageOpen((prev) => !prev)}
                 aria-expanded={isLanguageOpen}
                 aria-haspopup="true"
                 aria-label="Selecionar idioma"
               >
-                <img src={FlagBRUrl} alt="Brasil" className="h-4 w-5" />
+                <img src={FlagBRUrl} alt="Brasil" className="h-5 w-7" />
                 <ChevronDown className={`h-4 w-4 text-gray-600 transition-transform ${isLanguageOpen ? 'rotate-180' : ''}`} />
               </button>
 
@@ -103,7 +103,7 @@ export const Header = memo(function Header() {
               {isLanguageOpen && (
                 <div className="absolute right-0 top-full mt-2 w-48 rounded-lg border border-[#e4e4e4] bg-white shadow-[0_0_0_0px] z-50">
                   <button className="flex w-full items-center gap-2 px-4 py-2 text-sm hover:bg-gray-50 transition-colors">
-                    <img src={FlagBRUrl} alt="Brasil" className="h-4 w-5" />
+                    <img src={FlagBRUrl} alt="Brasil" className="h-5 w-7" />
                     Português (BR)
                   </button>
                 </div>

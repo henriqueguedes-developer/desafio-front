@@ -37,6 +37,20 @@ const products = [
     image: product2,
     isNew: true,
   },
+  {
+    id: 5,
+    name: "Órtese Soft Curta com Polegar",
+    code: "OR1065",
+    image: product1,
+    isNew: true,
+  },
+  {
+    id: 6,
+    name: "Órtese Soft Curta com Polegar",
+    code: "OR1065",
+    image: product2,
+    isNew: true,
+  },
 ];
 
 export const ProductGrid = memo(function ProductGrid() {
@@ -145,11 +159,11 @@ export const ProductGrid = memo(function ProductGrid() {
                   {/* Box da imagem */}
                   <div className="relative" style={{ margin: 0, padding: 0 }}>
                     {product.isNew && (
-                      <Badge className="absolute top-1 left-1 bg-[#A75897] text-white px-2 py-0.5 text-xs z-10">
+                      <Badge className="absolute top-2 left-2 bg-[#A75897] text-white px-4 py-1.5 text-base z-10">
                         Lançamento
                       </Badge>
                     )}
-                    
+
                     {/* Imagem */}
                     <img
                       src={product.image}
@@ -164,7 +178,7 @@ export const ProductGrid = memo(function ProductGrid() {
                       }}
                     />
                   </div>
-                  
+
                   {/* Texto abaixo da imagem */}
                   <div
                     className="mb-0"
@@ -216,6 +230,55 @@ export const ProductGrid = memo(function ProductGrid() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Paginação */}
+            <div className="flex items-center justify-center gap-2 mt-8 mb-4"
+              style={{
+                fontFamily: 'Roboto',
+                fontWeight: 400,
+                fontSize: '16px',
+                lineHeight: '18px'
+              }}
+            >
+              <button
+                className="w-8 h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer"
+                aria-label="Página anterior"
+              >
+                &lt;
+              </button>
+
+              <button
+                className="w-7 h-7 flex items-center justify-center rounded-full border border-[#707372] text-[#121212] cursor-pointer"
+                style={{ boxShadow: '0px 0px 4px 0px #707372' }}
+              >
+                1
+              </button>
+              <button className="w-8 h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer">
+                2
+              </button>
+              <button className="w-8 h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer">
+                3
+              </button>
+              <button className="w-8 h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer">
+                4
+              </button>
+              <button className="w-8 h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer">
+                5
+              </button>
+
+              <span className="text-[#707372]">...</span>
+
+              <button className="w-8 h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer">
+                10
+              </button>
+
+              <button
+                className="w-8 h-8 flex items-center justify-center text-[#707372] hover:text-[#121212] transition-colors cursor-pointer"
+                aria-label="Próxima página"
+              >
+                &gt;
+              </button>
             </div>
           </div>
         </div>
