@@ -6,6 +6,7 @@ import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { ProductGallery } from "@/components/product-detail/ProductGallery";
 import { ProductInfo } from "@/components/product-detail/ProductInfo";
 import { ProductHighlight } from "@/components/product-detail/ProductHighlight";
+import { ProductDetailsAccordion } from "@/components/product-detail/ProductDetailsAccordion";
 import { getProductDetailById } from "@/data/products";
 
 export const ProductDetailPage = memo(function ProductDetailPage() {
@@ -58,6 +59,22 @@ export const ProductDetailPage = memo(function ProductDetailPage() {
             {/* Seção de Destaque */}
             <div className="mt-12 lg:mt-16">
               <ProductHighlight />
+            </div>
+
+            {/* Linha Divisória */}
+            <div className="border-t border-[#AEB7B9]"></div>
+
+            {/* Acordeão de Detalhes */}
+            <div className="mt-2">
+              <ProductDetailsAccordion
+                productData={{
+                  level: product.level || "",
+                  name: product.name,
+                  family: product.family || "",
+                  code: product.code,
+                  model: product.model,
+                }}
+              />
             </div>
           </div>
         </div>
