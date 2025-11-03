@@ -28,7 +28,17 @@ export const Breadcrumb = memo(function Breadcrumb({ items }: BreadcrumbProps) {
               </Link>
             ) : (
               <span
-                className={isLast ? "text-[#80276C] font-medium" : "text-[#4C4C4C]"}
+                className={isLast ? "text-[#121212]" : "text-[#4C4C4C]"}
+                style={
+                  isLast
+                    ? {
+                        fontFamily: "Raleway",
+                        fontWeight: 500,
+                        fontSize: "16px",
+                        lineHeight: "20px",
+                      }
+                    : undefined
+                }
               >
                 {item.label}
               </span>
