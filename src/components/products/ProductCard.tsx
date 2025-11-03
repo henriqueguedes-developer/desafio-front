@@ -15,7 +15,6 @@ export const ProductCard = memo(function ProductCard({
   const isRelated = variant === "related";
 
   return isRelated ? (
-    // Related product card variant - used in carousels like RelatedProducts
     <Link
       to={`/produto/${product.id}`}
       className="group bg-white rounded-lg overflow-hidden border border-transparent hover:border-[#AEB7B9] transition-colors block"
@@ -64,7 +63,6 @@ export const ProductCard = memo(function ProductCard({
       </div>
     </Link>
   ) : (
-    // Grid product card variant - used in product grids
     <Link
       to={`/produto/${product.id}`}
       className="cursor-pointer group flex md:flex-col gap-3 md:gap-0"

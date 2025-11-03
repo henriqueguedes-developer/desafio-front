@@ -1,4 +1,3 @@
-// src/components/products/ProductGridPresentation.tsx
 import { memo, useState } from "react";
 import { Download, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";

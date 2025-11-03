@@ -1,4 +1,3 @@
-// src/hooks/useCarousel.ts
 import { useState, useEffect, useCallback } from "react";
 
 interface UseCarouselOptions {
@@ -15,10 +14,8 @@ export const useCarousel = ({
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [itemsPerSlide, setItemsPerSlide] = useState(defaultItemsPerSlide);
 
-  // Calculate effective items per slide (never more than available items)
   const effectiveItemsPerSlide = Math.min(itemsPerSlide, itemsCount);
   
-  // Calculate max index based on items count and items per slide
   const maxIndex = Math.max(0, itemsCount - effectiveItemsPerSlide);
 
   const canGoPrevious = currentIndex > 0;
@@ -32,7 +29,6 @@ export const useCarousel = ({
     setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
   }, [maxIndex]);
 
-  // Handle responsive changes
   useEffect(() => {
     const calculateItemsPerSlide = () => {
       if (typeof window !== 'undefined') {
@@ -47,11 +43,9 @@ export const useCarousel = ({
 
     const handleResize = () => {
       setItemsPerSlide(calculateItemsPerSlide());
-      // Reset index when responsive changes affect number of items per slide
       setCurrentIndex(prev => Math.min(prev, Math.max(0, itemsCount - calculateItemsPerSlide())));
     };
 
-    // Set initial responsive value
     setItemsPerSlide(calculateItemsPerSlide());
     
     window.addEventListener('resize', handleResize);

@@ -1,4 +1,3 @@
-// src/components/product-detail/ProductDetailPresentation.tsx
 import { memo } from "react";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
