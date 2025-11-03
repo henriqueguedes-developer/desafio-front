@@ -26,12 +26,11 @@ export const ProductHighlight = memo(function ProductHighlight() {
 
       <div className="max-w-2xl">
         <h2
-          className="text-[#4C4C4C] mb-4"
+          className="text-[#4C4C4C] mb-4 text-xl md:text-3xl"
           style={{
             fontFamily: "Raleway",
             fontWeight: 500,
-            fontSize: "32px",
-            lineHeight: "34px",
+            lineHeight: "1.2",
           }}
         >
           <div>
@@ -55,17 +54,16 @@ export const ProductHighlight = memo(function ProductHighlight() {
           </div>
         </h2>
 
-        <p
-          className="text-[#707372]"
+        <div
+          className="text-[#707372] text-xs md:text-base"
           style={{
             fontFamily: "Roboto",
-            fontSize: "14px",
-            lineHeight: "22px",
+            lineHeight: "1.5",
           }}
         >
           <div>Antes de utilizar o produto, leia atentamente as</div>
           <div>precauções e Instruções de uso.</div>
-        </p>
+        </div>
       </div>
 
       {/* Logo Anvisa - fora do max-w-2xl para centralizar na página */}
@@ -73,7 +71,7 @@ export const ProductHighlight = memo(function ProductHighlight() {
         <img
           src={anvisaImg}
           alt="Anvisa"
-          className="max-w-3xl"
+          className="w-full max-w-sm md:max-w-3xl h-auto"
         />
       </div>
     </div>

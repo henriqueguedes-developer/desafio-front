@@ -69,6 +69,42 @@ export const mockProducts: Product[] = [
     family: "Air Flex",
     category: "Órtese",
   },
+  {
+    id: 7,
+    name: "Órtese Soft Longa",
+    code: "OR1067",
+    image: product1,
+    isNew: false,
+    family: "Hidrolight Neo",
+    category: "Órtese",
+  },
+  {
+    id: 8,
+    name: "Órtese Premium Plus",
+    code: "OR1068",
+    image: product2,
+    isNew: true,
+    family: "Comfort Air",
+    category: "Órtese",
+  },
+  {
+    id: 9,
+    name: "Órtese Advanced",
+    code: "OR1069",
+    image: product1,
+    isNew: false,
+    family: "Ortho Recovery",
+    category: "Órtese",
+  },
+  {
+    id: 10,
+    name: "Órtese Pro Flex",
+    code: "OR1070",
+    image: product2,
+    isNew: true,
+    family: "Air Flex",
+    category: "Órtese",
+  },
 ];
 
 

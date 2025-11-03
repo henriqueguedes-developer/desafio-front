@@ -7,7 +7,8 @@ import { ProductGallery } from "@/components/product-detail/ProductGallery";
 import { ProductInfo } from "@/components/product-detail/ProductInfo";
 import { ProductHighlight } from "@/components/product-detail/ProductHighlight";
 import { ProductDetailsAccordion } from "@/components/product-detail/ProductDetailsAccordion";
-import { getProductDetailById } from "@/data/products";
+import { RelatedProducts } from "@/components/product-detail/RelatedProducts";
+import { getProductDetailById, getRelatedProducts } from "@/data/products";
 
 export const ProductDetailPage = memo(function ProductDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -19,6 +20,8 @@ export const ProductDetailPage = memo(function ProductDetailPage() {
   if (!product) {
     return <Navigate to="/" replace />;
   }
+
+  const relatedProducts = productId ? getRelatedProducts(productId, 12) : [];
 
   const breadcrumbItems = [
     { label: "Início", href: "/" },
@@ -79,6 +82,9 @@ export const ProductDetailPage = memo(function ProductDetailPage() {
           </div>
         </div>
       </div>
+
+      {/* Produtos Relacionados */}
+      <RelatedProducts products={relatedProducts} />
     </MainLayout>
   );
 });

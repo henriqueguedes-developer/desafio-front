@@ -45,12 +45,10 @@ export const ProductInfo = memo(function ProductInfo({
 
       {/* Título */}
       <h1
-        className="bg-[#80276C] text-white px-6 py-3 rounded-lg w-fit mb-3"
+        className="bg-[#80276C] text-white px-4 md:px-6 py-3 rounded-lg mb-3 text-xl md:text-3xl"
         style={{
           fontFamily: "Raleway",
           fontWeight: 700,
-          fontSize: "32px",
-          lineHeight: "40px",
         }}
       >
         {name}
