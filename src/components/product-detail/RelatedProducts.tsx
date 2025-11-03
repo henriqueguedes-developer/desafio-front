@@ -1,6 +1,8 @@
 // src/components/product-detail/RelatedProducts.tsx
-import { memo, useState, useEffect } from "react";
+import { memo } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ProductCard } from "@/components/products/ProductCard";
+import { useCarousel } from "@/hooks/useCarousel";
 import type { Product } from "@/types";
 
 interface RelatedProductsProps {
@@ -10,33 +12,17 @@ interface RelatedProductsProps {
 export const RelatedProducts = memo(function RelatedProducts({
   products,
 }: RelatedProductsProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [itemsPerSlide, setItemsPerSlide] = useState(
-    window.innerWidth >= 1024 ? 6 : window.innerWidth >= 768 ? 3 : 2
-  );
-
-  useEffect(() => {
-    const handleResize = () => {
-      const newItemsPerSlide = window.innerWidth >= 1024 ? 6 : window.innerWidth >= 768 ? 3 : 2;
-      setItemsPerSlide(newItemsPerSlide);
-      setCurrentIndex(0); // Reset ao mudar o número de itens
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const handlePrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? 0 : prev - 1));
-  };
-
-  const handleNext = () => {
-    const maxIndex = Math.max(0, products.length - itemsPerSlide);
-    setCurrentIndex((prev) => (prev >= maxIndex ? maxIndex : prev + 1));
-  };
-
-  const canGoPrevious = currentIndex > 0;
-  const canGoNext = currentIndex < products.length - itemsPerSlide;
+  const { 
+    currentIndex, 
+    canGoPrevious, 
+    canGoNext, 
+    handlePrevious, 
+    handleNext, 
+    itemsPerSlide 
+  } = useCarousel({ 
+    itemsCount: products.length, 
+    itemsPerSlide: 6 
+  });
 
   return (
     <div className="py-6 md:py-12">
@@ -81,61 +67,18 @@ export const RelatedProducts = memo(function RelatedProducts({
           <div
             className="flex transition-transform duration-500 ease-out gap-3 md:gap-4"
             style={{
-              transform: `translateX(-${currentIndex * (100 / itemsPerSlide)}%)`,
+              transform: `translateX(-${currentIndex * (100 / Math.min(itemsPerSlide, products.length))}%)`,
             }}
           >
             {products.map((product) => (
               <div
                 key={product.id}
                 className="shrink-0"
-                style={{ width: `calc(${100 / itemsPerSlide}% - ${(itemsPerSlide - 1) * 12 / itemsPerSlide}px)` }}
+                style={{ 
+                  width: `calc(${100 / Math.min(itemsPerSlide, products.length)}% - ${Math.min(itemsPerSlide, products.length) > 1 ? (Math.min(itemsPerSlide, products.length) - 1) * 12 / Math.min(itemsPerSlide, products.length) : 0}px)` 
+                }}
               >
-                <a
-                  href={`/produto/${product.id}`}
-                  className="group bg-white rounded-lg overflow-hidden border border-transparent hover:border-[#AEB7B9] transition-colors block"
-                >
-                  {/* Imagem */}
-                  <div className="relative aspect-square bg-white">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-full object-contain p-2"
-                    />
-                    {product.isNew && (
-                      <div
-                        className="absolute top-1 right-1 bg-[#80276C] text-white px-2 py-0.5 rounded text-xs"
-                        style={{ fontFamily: "Raleway", fontWeight: 600 }}
-                      >
-                        Novo produto
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Informações */}
-                  <div className="p-2">
-                    <p
-                      className="text-[#121212] mb-0.5 line-clamp-2"
-                      style={{
-                        fontFamily: "Raleway",
-                        fontWeight: 500,
-                        fontSize: "13px",
-                        lineHeight: "16px",
-                      }}
-                    >
-                      {product.name}
-                    </p>
-                    <p
-                      className="text-[#707372]"
-                      style={{
-                        fontFamily: "Roboto",
-                        fontSize: "11px",
-                        lineHeight: "14px",
-                      }}
-                    >
-                      Código SKU: {product.code}
-                    </p>
-                  </div>
-                </a>
+                <ProductCard product={product} variant="related" />
               </div>
             ))}
           </div>

@@ -1,7 +1,8 @@
 // src/components/product-detail/ProductGallery.tsx
-import { memo, useState } from "react";
+import { memo } from "react";
 import { ChevronLeft, ChevronRight, ZoomIn, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useCarousel } from "@/hooks/useCarousel";
 
 interface ProductGalleryProps {
   images: string[];
@@ -12,15 +13,18 @@ export const ProductGallery = memo(function ProductGallery({
   images,
   productName,
 }: ProductGalleryProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handlePrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
+  const { 
+    currentIndex, 
+    canGoPrevious, 
+    canGoNext, 
+    handlePrevious, 
+    handleNext, 
+    setCurrentIndex 
+  } = useCarousel({ 
+    itemsCount: images.length,
+    initialIndex: 0,
+    itemsPerSlide: 5 // For thumbnails
+  });
 
   const handleThumbnailClick = (index: number) => {
     setCurrentIndex(index);
@@ -68,6 +72,7 @@ export const ProductGallery = memo(function ProductGallery({
               onClick={handlePrevious}
               className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md transition-colors"
               aria-label="Imagem anterior"
+              disabled={!canGoPrevious}
             >
               <ChevronLeft className="h-5 w-5 text-gray-700" />
             </button>
@@ -76,6 +81,7 @@ export const ProductGallery = memo(function ProductGallery({
               onClick={handleNext}
               className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md transition-colors"
               aria-label="Próxima imagem"
+              disabled={!canGoNext}
             >
               <ChevronRight className="h-5 w-5 text-gray-700" />
             </button>
@@ -89,7 +95,7 @@ export const ProductGallery = memo(function ProductGallery({
           onClick={handlePrevious}
           className="shrink-0 p-1 hover:bg-gray-100 rounded transition-colors"
           aria-label="Imagem anterior"
-          disabled={images.length <= 1}
+          disabled={images.length <= 1 || !canGoPrevious}
         >
           <ChevronLeft className="h-5 w-5 text-gray-600" />
         </button>
@@ -119,7 +125,7 @@ export const ProductGallery = memo(function ProductGallery({
           onClick={handleNext}
           className="shrink-0 p-1 hover:bg-gray-100 rounded transition-colors"
           aria-label="Próxima imagem"
-          disabled={images.length <= 1}
+          disabled={images.length <= 1 || !canGoNext}
         >
           <ChevronRight className="h-5 w-5 text-gray-600" />
         </button>

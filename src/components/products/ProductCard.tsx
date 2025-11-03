@@ -14,31 +14,66 @@ export const ProductCard = memo(function ProductCard({
 }: ProductCardProps) {
   const isRelated = variant === "related";
 
-  return (
+  return isRelated ? (
+    // Related product card variant - used in carousels like RelatedProducts
     <Link
       to={`/produto/${product.id}`}
-      className={`cursor-pointer group ${
-        isRelated
-          ? "flex flex-col gap-0"
-          : "flex md:flex-col gap-3 md:gap-0"
-      }`}
+      className="group bg-white rounded-lg overflow-hidden border border-transparent hover:border-[#AEB7B9] transition-colors block"
     >
-   
-      <div className={`relative ${
-        isRelated
-          ? "w-full h-auto"
-          : "shrink-0 w-28 h-28 md:w-full md:h-auto"
-      }`}>
+      {/* Imagem */}
+      <div className="relative aspect-square bg-white">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-full object-contain p-2"
+        />
         {product.isNew && (
-          <Badge className={`absolute z-10 bg-[#A75897] text-white ${
-            isRelated
-              ? "top-2 left-2 px-3 py-1 text-xs"
-              : "top-1 left-1 md:top-2 md:left-2 px-2 py-0.5 md:px-4 md:py-1.5 text-xs md:text-base"
-          }`}>
+          <div
+            className="absolute top-1 right-1 bg-[#80276C] text-white px-2 py-0.5 rounded text-xs"
+            style={{ fontFamily: "Raleway", fontWeight: 600 }}
+          >
+            Novo produto
+          </div>
+        )}
+      </div>
+
+      {/* Informações */}
+      <div className="p-2">
+        <p
+          className="text-[#121212] mb-0.5 line-clamp-2"
+          style={{
+            fontFamily: "Raleway",
+            fontWeight: 500,
+            fontSize: "13px",
+            lineHeight: "16px",
+          }}
+        >
+          {product.name}
+        </p>
+        <p
+          className="text-[#707372]"
+          style={{
+            fontFamily: "Roboto",
+            fontSize: "11px",
+            lineHeight: "14px",
+          }}
+        >
+          Código SKU: {product.code}
+        </p>
+      </div>
+    </Link>
+  ) : (
+    // Grid product card variant - used in product grids
+    <Link
+      to={`/produto/${product.id}`}
+      className="cursor-pointer group flex md:flex-col gap-3 md:gap-0"
+    >
+      <div className="relative shrink-0 w-28 h-28 md:w-full md:h-auto">
+        {product.isNew && (
+          <Badge className="absolute z-10 bg-[#A75897] text-white top-1 left-1 md:top-2 md:left-2 px-2 py-0.5 md:px-4 md:py-1.5 text-xs md:text-base">
             Lançamento
           </Badge>
         )}
-
 
         <img
           src={product.image}
@@ -50,7 +85,6 @@ export const ProductCard = memo(function ProductCard({
         />
       </div>
 
-   
       <div
         className="flex-1 md:mb-0"
         style={{

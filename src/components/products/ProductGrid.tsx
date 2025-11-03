@@ -4,7 +4,7 @@ import { Download, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/products/ProductCard";
 import { ProductFilters } from "@/components/products/ProductFilters";
-import { Pagination } from "@/components/products/Pagination";
+import { ProductPagination } from "@/components/products/ProductPagination"; // Note: This file was renamed from Pagination.tsx
 import { mockProducts } from "@/data/products";
 
 export const ProductGrid = memo(function ProductGrid() {
@@ -86,7 +86,7 @@ export const ProductGrid = memo(function ProductGrid() {
             </div>
 
           
-            <Pagination 
+            <ProductPagination 
               currentPage={currentPage}
               totalPages={10}
               onPageChange={setCurrentPage}

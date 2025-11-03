@@ -1,15 +1,15 @@
-// src/components/ui/Pagination.tsx
-interface PaginationProps {
+// src/components/products/ProductPagination.tsx
+interface ProductPaginationProps {
   currentPage?: number;
   totalPages?: number;
   onPageChange: (page: number) => void;
 }
 
-export const Pagination = ({
+export const ProductPagination = ({
   currentPage = 1,
   totalPages = 10,
   onPageChange,
-}: PaginationProps) => {
+}: ProductPaginationProps) => {
   const getVisiblePages = (page: number, total: number, limit = 5) => {
 
     if (total <= limit) {
