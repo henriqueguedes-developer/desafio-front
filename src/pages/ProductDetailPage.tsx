@@ -5,6 +5,7 @@ import { MainLayout } from "@/components/layout/MainLayout";
 import { Breadcrumb } from "@/components/common/Breadcrumb";
 import { ProductGallery } from "@/components/product-detail/ProductGallery";
 import { ProductInfo } from "@/components/product-detail/ProductInfo";
+import { ProductHighlight } from "@/components/product-detail/ProductHighlight";
 import { getProductDetailById } from "@/data/products";
 
 export const ProductDetailPage = memo(function ProductDetailPage() {
@@ -52,6 +53,11 @@ export const ProductDetailPage = memo(function ProductDetailPage() {
                   sizes={product.sizes}
                 />
               </div>
+            </div>
+
+            {/* Seção de Destaque */}
+            <div className="mt-12 lg:mt-16">
+              <ProductHighlight />
             </div>
           </div>
         </div>
