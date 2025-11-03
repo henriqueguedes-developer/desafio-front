@@ -1,7 +1,8 @@
 // src/components/layout/Header.tsx
-import { memo, useState } from "react";
+import { memo } from "react";
 import { Button } from "@/components/ui/button";
 import { Search, Menu, ChevronDown } from "lucide-react";
+import { useHeaderState } from "@/hooks/useHeaderState";
 import LogoUrl from "@/assets/logo.svg?url";
 import FlagBRUrl from "@/assets/icons/flag-br.svg?url";
 
@@ -13,9 +14,16 @@ const navItems = [
 ] as const;
 
 export const Header = memo(function Header() {
-  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const {
+    isLanguageOpen,
+    isSearchOpen,
+    isMobileMenuOpen,
+    toggleLanguage,
+    openSearch,
+    closeSearch,
+    toggleMobileMenu,
+    closeMobileMenu
+  } = useHeaderState();
 
   return (
     <header
@@ -47,7 +55,7 @@ export const Header = memo(function Header() {
               <button
                 className={`h-8 w-8 flex items-center justify-center rounded-full bg-[#F8F8F8] hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 cursor-pointer ${isSearchOpen ? 'opacity-0 scale-90' : 'opacity-100 scale-100'}`}
                 aria-label="Buscar produtos"
-                onClick={() => setIsSearchOpen(true)}
+                onClick={openSearch}
               >
                 <Search className="h-4 w-4 text-gray-700 transition-colors duration-200" />
               </button>
@@ -61,12 +69,12 @@ export const Header = memo(function Header() {
                       placeholder="Buscar..."
                       className="h-full w-full pl-9 pr-8 text-sm bg-transparent border-none outline-none focus:outline-none focus:ring-0 transition-all duration-300"
                       autoFocus
-                      onBlur={() => setIsSearchOpen(false)}
+                      onBlur={closeSearch}
                     />
                     <button
                       className="absolute right-2 text-gray-400 hover:text-gray-600 transition-colors duration-200 cursor-pointer text-sm"
                       onMouseDown={(e) => e.preventDefault()}
-                      onClick={() => setIsSearchOpen(false)}
+                      onClick={closeSearch}
                     >
                       ✕
                     </button>
@@ -90,7 +98,7 @@ export const Header = memo(function Header() {
             <div className="relative">
               <button
                 className="h-10 px-3 flex items-center gap-2 rounded-md focus:outline-none focus:ring-0 hover:bg-gray-50 transition-colors"
-                onClick={() => setIsLanguageOpen((prev) => !prev)}
+                onClick={toggleLanguage}
                 aria-expanded={isLanguageOpen}
                 aria-haspopup="true"
                 aria-label="Selecionar idioma"
@@ -117,7 +125,7 @@ export const Header = memo(function Header() {
             size="icon"
             className="md:hidden"
             aria-label="Abrir menu"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={toggleMobileMenu}
           >
             <Menu className="h-6 w-6" />
           </Button>
@@ -133,7 +141,7 @@ export const Header = memo(function Header() {
                   key={item.label}
                   href={item.href}
                   className="text-base font-medium text-[#4C4C4C] hover:text-primary py-3 border-b border-gray-100 last:border-0 transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={closeMobileMenu}
                 >
                   {item.label}
                 </a>
