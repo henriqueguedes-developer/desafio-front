@@ -26,6 +26,7 @@ export const ProductCard = memo(function ProductCard({
           src={product.image}
           alt={product.name}
           className="w-full h-full object-contain p-2"
+          loading="lazy"
         />
         {product.isNew && (
           <div
@@ -82,6 +83,7 @@ export const ProductCard = memo(function ProductCard({
           style={{
             display: 'block'
           }}
+          loading="lazy"
         />
       </div>
 

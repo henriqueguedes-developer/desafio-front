@@ -12,10 +12,11 @@ A prioridade foi a **usabilidade**, a **manutenibilidade** e a **reutilização 
 ## ✨ Destaques & Funcionalidades
 
 *   🔄 **Componentes Reutilizáveis:** Arquitetura baseada em componentes com forte ênfase na reutilização e eliminação de duplicação de código (DRY).
-*   🎣 **Hooks Personalizados:** Implementação de hooks customizados como `useCarousel`, `useResponsive`, e `useSearchInput` para compartilhamento de lógica entre componentes.
+*   🎣 **Hooks Personalizados:** Implementação de hooks customizados como `useCarousel` para compartilhamento de lógica entre componentes.
 *   📱 **Design Responsivo:** Interface adaptável para mobile, tablet e desktop, garantindo uma experiência consistente em todos os dispositivos.
 *   🛒 **Catálogo de Produtos:** Sistema completo para exibição de produtos com galeria de imagens, detalhes técnicos e informações de tamanho e cores.
 *   🔍 **Navegação por Breadcrumbs:** Sistema de navegação hierárquica para melhor compreensão do usuário sobre sua localização na página.
+*   🖼️ **Otimização de Imagens:** Redução de 50% no tamanho das imagens para melhor performance de carregamento.
 *   🎨 **Design Consistente:** Uso uniforme de tipografia (Raleway e Roboto) e paleta de cores padronizada para uma identidade visual coesa.
 
 ---
@@ -29,10 +30,10 @@ Confira o projeto hospedado: [https://desafio-front-jade-nu.vercel.app/](https:/
 ## 🖼️ Visual
 
 ### Página Inicial
-![Tela Principal](./src/assets/home.png)
+<img src="./src/assets/home.png" alt="Tela Principal" width="600"/>
 
 ### Página de Produto
-![Página de Produto](./src/assets/produto.png)
+<img src="./src/assets/produto.png" alt="Página de Produto" width="600"/>
 
 ---
 

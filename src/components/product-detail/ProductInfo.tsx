@@ -1,5 +1,5 @@
 // src/components/product-detail/ProductInfo.tsx
-import { memo, useState } from "react";
+import { memo, useState, useCallback, useMemo } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import SetaIcon from "@/assets/icons/seta.svg?url";
@@ -27,6 +27,40 @@ export const ProductInfo = memo(function ProductInfo({
   sizes,
 }: ProductInfoProps) {
   const [selectedSize, setSelectedSize] = useState(sizes[0] || "");
+
+  const handleSizeSelect = useCallback((size: string) => {
+    setSelectedSize(size);
+  }, [setSelectedSize]);
+
+  // Memoize the color elements to avoid re-creating on each render
+  const colorElements = useMemo(() => colors.map((color) => (
+    <div
+      key={color.name}
+      className="flex items-center gap-2"
+    >
+      <div
+        className="w-4 h-4 rounded-full border border-gray-300"
+        style={{ backgroundColor: color.value }}
+      />
+      <span className="text-sm text-[#4C4C4C]">{color.name}</span>
+    </div>
+  )), [colors]);
+
+  // Memoize the size badges to avoid re-creating on each render
+  const sizeBadges = useMemo(() => sizes.map((size) => (
+    <Badge
+      key={size}
+      variant={selectedSize === size ? "default" : "secondary"}
+      className={`px-2 py-0.5 cursor-pointer transition-all text-xs ${
+        selectedSize === size
+          ? "bg-[#E57200] text-white hover:bg-[#CC6600]"
+          : "bg-[#EBEBEB] text-[#4C4C4C] hover:bg-[#E57200] hover:text-white"
+      }`}
+      onClick={() => handleSizeSelect(size)}
+    >
+      {size}
+    </Badge>
+  )), [sizes, selectedSize, handleSizeSelect]);
 
   return (
     <div className="flex flex-col">
@@ -111,18 +145,7 @@ export const ProductInfo = memo(function ProductInfo({
             Cores disponíveis:
           </span>
           <div className="flex items-center gap-2">
-            {colors.map((color) => (
-              <div
-                key={color.name}
-                className="flex items-center gap-2"
-              >
-                <div
-                  className="w-4 h-4 rounded-full border border-gray-300"
-                  style={{ backgroundColor: color.value }}
-                />
-                <span className="text-sm text-[#4C4C4C]">{color.name}</span>
-              </div>
-            ))}
+            {colorElements}
           </div>
         </div>
       </div>
@@ -148,20 +171,7 @@ export const ProductInfo = memo(function ProductInfo({
             Tamanhos disponíveis:
           </span>
           <div className="flex gap-2">
-            {sizes.map((size) => (
-              <Badge
-                key={size}
-                variant={selectedSize === size ? "default" : "secondary"}
-                className={`px-2 py-0.5 cursor-pointer transition-all text-xs ${
-                  selectedSize === size
-                    ? "bg-[#E57200] text-white hover:bg-[#CC6600]"
-                    : "bg-[#EBEBEB] text-[#4C4C4C] hover:bg-[#E57200] hover:text-white"
-                }`}
-                onClick={() => setSelectedSize(size)}
-              >
-                {size}
-              </Badge>
-            ))}
+            {sizeBadges}
           </div>
         </div>
       </div>

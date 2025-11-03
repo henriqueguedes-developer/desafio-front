@@ -1,5 +1,5 @@
 // src/components/products/ProductGrid.tsx
-import { memo, useState } from "react";
+import { memo, useState, useMemo } from "react";
 import { Download, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/products/ProductCard";
@@ -7,11 +7,22 @@ import { ProductFilters } from "@/components/products/ProductFilters";
 import { ProductPagination } from "@/components/products/ProductPagination"; // Note: This file was renamed from Pagination.tsx
 import { mockProducts } from "@/data/products";
 
+const PRODUCTS_PER_PAGE = 12; // Define o número de produtos por página
+
 export const ProductGrid = memo(function ProductGrid() {
   const [familiesOpen, setFamiliesOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+
+  // Memoize os produtos paginados para evitar cálculos desnecessários
+  const paginatedProducts = useMemo(() => {
+    const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+    const endIndex = startIndex + PRODUCTS_PER_PAGE;
+    return mockProducts.slice(startIndex, endIndex);
+  }, [currentPage]);
+
+  const totalPages = Math.ceil(mockProducts.length / PRODUCTS_PER_PAGE);
 
   return (
     <section className="w-full bg-white py-4 md:py-6 lg:py-8">
@@ -37,7 +48,7 @@ export const ProductGrid = memo(function ProductGrid() {
                     className="text-xs md:text-[14px] leading-4 font-bold text-[#121212]"
                     style={{ fontFamily: "Raleway" }}
                   >
-                    86 produtos
+                    {mockProducts.length} produtos
                   </p>
                 </div>
                 <div className="relative flex items-center">
@@ -80,7 +91,7 @@ export const ProductGrid = memo(function ProductGrid() {
 
      
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mt-4">
-              {mockProducts.map((product) => (
+              {paginatedProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
@@ -88,7 +99,7 @@ export const ProductGrid = memo(function ProductGrid() {
           
             <ProductPagination 
               currentPage={currentPage}
-              totalPages={10}
+              totalPages={totalPages}
               onPageChange={setCurrentPage}
             />
           </div>

@@ -1,5 +1,5 @@
 // src/components/product-detail/ProductGallery.tsx
-import { memo } from "react";
+import { memo, useCallback, useMemo } from "react";
 import { ChevronLeft, ChevronRight, ZoomIn, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useCarousel } from "@/hooks/useCarousel";
@@ -26,9 +26,30 @@ export const ProductGallery = memo(function ProductGallery({
     itemsPerSlide: 5 // For thumbnails
   });
 
-  const handleThumbnailClick = (index: number) => {
+  const handleThumbnailClick = useCallback((index: number) => {
     setCurrentIndex(index);
-  };
+  }, [setCurrentIndex]);
+
+  // Memoize thumbnail buttons to prevent re-rendering
+  const thumbnailButtons = useMemo(() => images.map((image, index) => (
+    <button
+      key={index}
+      onClick={() => handleThumbnailClick(index)}
+      className={cn(
+        "shrink-0 w-16 h-16 md:w-20 md:h-20 border-2 rounded-lg overflow-hidden transition-all",
+        currentIndex === index
+          ? "border-[#E57200] ring-2 ring-[#E57200]/30"
+          : "border-gray-200 hover:border-gray-300"
+      )}
+    >
+      <img
+        src={image}
+        alt={`${productName} - Miniatura ${index + 1}`}
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </button>
+  )), [images, currentIndex, handleThumbnailClick, productName]);
 
   return (
     <div className="flex flex-col gap-4">
@@ -38,6 +59,7 @@ export const ProductGallery = memo(function ProductGallery({
           src={images[currentIndex]}
           alt={`${productName} - Imagem ${currentIndex + 1}`}
           className="w-full h-full object-contain"
+          loading="lazy"
         />
 
         {/* Contador */}
@@ -101,24 +123,7 @@ export const ProductGallery = memo(function ProductGallery({
         </button>
 
         <div className="flex gap-2 overflow-x-auto scrollbar-hide flex-1">
-          {images.map((image, index) => (
-            <button
-              key={index}
-              onClick={() => handleThumbnailClick(index)}
-              className={cn(
-                "shrink-0 w-16 h-16 md:w-20 md:h-20 border-2 rounded-lg overflow-hidden transition-all",
-                currentIndex === index
-                  ? "border-[#E57200] ring-2 ring-[#E57200]/30"
-                  : "border-gray-200 hover:border-gray-300"
-              )}
-            >
-              <img
-                src={image}
-                alt={`${productName} - Miniatura ${index + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </button>
-          ))}
+          {thumbnailButtons}
         </div>
 
         <button

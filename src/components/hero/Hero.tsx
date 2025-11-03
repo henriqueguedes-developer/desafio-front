@@ -45,6 +45,7 @@ export const Hero = memo(function Hero() {
               alt=""
               className="h-8 md:h-12 lg:h-14 xl:h-16 w-auto"
               aria-hidden="true"
+              loading="lazy"
             />
           </div>
 
